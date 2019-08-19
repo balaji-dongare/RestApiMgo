@@ -3,18 +3,16 @@ package main
 import (
 	"fmt"
 	"net/http"
-	"strconv"
+
+	"github.com/TestGit/RestApiMgo/propparser"
 
 	"github.com/RestApiMgo/controller"
 	"github.com/gorilla/mux"
 )
 
 func main() {
-	// //Connect to DB
-	// var session = mongocon.Connect("localhost")
-	// getData(session)
-	//listening port
-	var port = ":" + strconv.Itoa(3000)
+	config := propparser.ReadConfig()
+	var port = ":" + config.Port
 	//init router
 	router := mux.NewRouter()
 	//enpoints

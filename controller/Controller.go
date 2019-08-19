@@ -6,15 +6,20 @@ import (
 
 	"github.com/RestApiMgo/employee"
 	"github.com/RestApiMgo/mongocon"
+	"github.com/TestGit/RestApiMgo/propparser"
 	"github.com/gorilla/mux"
 	"go.mongodb.org/mongo-driver/bson"
 )
 
 //Connect to DB
-var session = mongocon.Connect("localhost")
+var config = propparser.ReadConfig()
+var uri = config.ConnectionString
+var session = mongocon.Connect(uri)
+var db = config.Database
+var coll = config.Collection
 
 // Collection Employee
-var c = session.DB("RestAssignment").C("Employee")
+var c = session.DB(config.Database).C(config.Collection)
 
 //GetAllEmployees fetch all emp fronm db
 func GetAllEmployees(w http.ResponseWriter, r *http.Request) {
