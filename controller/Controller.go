@@ -9,14 +9,26 @@ import (
 	"github.com/TestGit/RestApiMgo/propparser"
 	"github.com/gorilla/mux"
 	"go.mongodb.org/mongo-driver/bson"
+	"gopkg.in/mgo.v2"
 )
 
 //Connect to DB
 var config = propparser.ReadConfig()
 var session = mongocon.Connect(config.ConnectionString)
 
+// Index
+var index = mgo.Index{
+	Key:        []string{"fname", "lname"},
+	Unique:     true,
+	DropDups:   true,
+	Background: true,
+	Sparse:     true,
+}
+
 // Collection Employee
 var c = session.DB(config.Database).C(config.Collection)
+
+var err = c.EnsureIndex(index)
 
 //GetAllEmployees fetch all emp fronm db
 func GetAllEmployees(w http.ResponseWriter, r *http.Request) {
