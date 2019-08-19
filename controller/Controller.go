@@ -13,10 +13,7 @@ import (
 
 //Connect to DB
 var config = propparser.ReadConfig()
-var uri = config.ConnectionString
-var session = mongocon.Connect(uri)
-var db = config.Database
-var coll = config.Collection
+var session = mongocon.Connect(config.ConnectionString)
 
 // Collection Employee
 var c = session.DB(config.Database).C(config.Collection)
