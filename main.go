@@ -5,25 +5,10 @@ import (
 	"net/http"
 	"strconv"
 
-	"gopkg.in/mgo.v2"
-
 	"github.com/RestApiMgo/controller"
-	"github.com/RestApiMgo/employee"
 	"github.com/gorilla/mux"
-	"go.mongodb.org/mongo-driver/bson"
 )
 
-func getData(session *mgo.Session) {
-	// Collection People
-	c := session.DB("RestAssignment").C("Employee")
-	// Query One
-	result := employee.Employee{}
-	err := c.Find(bson.M{"fname": "Bala-G"}).One(&result)
-	if err != nil {
-		fmt.Println(err)
-	}
-	fmt.Println("Phone", result)
-}
 func main() {
 	// //Connect to DB
 	// var session = mongocon.Connect("localhost")
