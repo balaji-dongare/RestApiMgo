@@ -4,9 +4,9 @@ import (
 	"time"
 )
 
-//Employee Struct
+// Employee employeestruct
+// swagger:model
 type Employee struct {
-	//ID          bson.ObjectId `bson:"_id,omitempty"`
 	FName       string    `json:"fname"`
 	LName       string    `json:"lname"`
 	Designation string    `json:"designation"`
