@@ -1,0 +1,242 @@
+{
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "swagger": "2.0",
+  "info": {
+    "description": "the purpose of this application is to provide an application\nthat is using go code to define an  Rest API",
+    "title": "Employee API.",
+    "version": "0.0.1"
+  },
+  "host": "localhost:3000",
+  "basePath": "/v1",
+  "paths": {
+    "/Employee": {
+      "post": {
+        "description": "Returns new Employee",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Employee"
+        ],
+        "summary": "Add new Employee",
+        "operationId": "addNewEmployee",
+        "parameters": [
+          {
+            "description": "add employee data",
+            "name": "employee",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Employee"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Employee response",
+            "schema": {
+              "$ref": "#/definitions/Employee"
+            }
+          },
+          "403": {
+            "description": "Forbidden, you are not allowed to undertake this operation"
+          },
+          "405": {
+            "description": "Method Not Allowed, likely url is not correct"
+          },
+          "409": {
+            "description": "Conflict"
+          }
+        }
+      }
+    },
+    "/Employee/{fname}": {
+      "get": {
+        "description": "Returns existing Employee filtered by fname",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Employee"
+        ],
+        "summary": "Get Employee",
+        "operationId": "getEmployee",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "fname",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "employee data",
+            "schema": {
+              "$ref": "#/definitions/Employee"
+            }
+          },
+          "403": {
+            "description": "Forbidden, you are not allowed to undertake this operation"
+          },
+          "405": {
+            "description": "Method Not Allowed, likely url is not correct"
+          }
+        }
+      },
+      "put": {
+        "description": "Update existing Employee filtered by fname",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Employee"
+        ],
+        "summary": "Update Employee",
+        "operationId": "updateEmployee",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "fname",
+            "in": "path",
+            "required": true
+          },
+          {
+            "description": "add employee data",
+            "name": "employee",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Employee"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Employee response",
+            "schema": {
+              "$ref": "#/definitions/Employee"
+            }
+          },
+          "403": {
+            "description": "Forbidden, you are not allowed to undertake this operation"
+          },
+          "405": {
+            "description": "Method Not Allowed, likely url is not correct"
+          },
+          "409": {
+            "description": "Conflict"
+          }
+        }
+      }
+    },
+    "/Employees": {
+      "get": {
+        "description": "Returns existing Employees",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Employee"
+        ],
+        "summary": "Get Employee",
+        "operationId": "getAllEmployee",
+        "responses": {
+          "200": {
+            "description": "employee data",
+            "schema": {
+              "$ref": "#/definitions/Employee"
+            }
+          },
+          "403": {
+            "description": "Forbidden, you are not allowed to undertake this operation"
+          },
+          "405": {
+            "description": "Method Not Allowed, likely url is not correct"
+          }
+        }
+      }
+    },
+    "/deleteEmployee/{fname}": {
+      "delete": {
+        "description": "Delete existing Employee filtered by fname",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Employee"
+        ],
+        "summary": "Delete Employee",
+        "operationId": "deleteEmployee",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "fname",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "delete employee sucessfully",
+            "schema": {
+              "$ref": "#/definitions/Employee"
+            }
+          },
+          "403": {
+            "description": "Forbidden, you are not allowed to undertake this operation"
+          },
+          "405": {
+            "description": "Method Not Allowed, likely url is not correct"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Employee": {
+      "description": "Employee employeestruct",
+      "type": "object",
+      "properties": {
+        "designation": {
+          "type": "string",
+          "x-go-name": "Designation"
+        },
+        "fname": {
+          "type": "string",
+          "x-go-name": "FName"
+        },
+        "joiningdate": {
+          "type": "string",
+          "format": "date-time",
+          "x-go-name": "JoiningDate"
+        },
+        "lname": {
+          "type": "string",
+          "x-go-name": "LName"
+        },
+        "phone": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Phone"
+        }
+      },
+      "x-go-package": "github.com/TestGit/RestApiMgo/employee"
+    }
+  }
+}
